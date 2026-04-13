@@ -18,7 +18,8 @@
 >- Do buildings with higher energy ratings consistently perform better than lower-rated buildings across multiple years?
 >- How have individual buildings improved or declined over time in terms of energy performance?
 >- Are there differences in performance trends across building types or neighborhoods?
->These questions are designed to be directly answerable using the available benchmarking datasets and will guide our data integration and analysis process.
+
+>These questions align with the available data and will help guide our overall approach to integrating and analyzing it.
 
 
 **Datasets**
