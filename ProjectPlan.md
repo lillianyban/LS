@@ -18,7 +18,8 @@
 *How the Datasets Connect*
 >First, we will combine the six annual benchmarking files into one dataset and add a reporting_year column. After that, we need to match buildings across years, which is not straightforward because building IDs are not always reliable and addresses are formatted differently. To deal with this, we will use fuzzy matching on addresses along with location data to group records that likely represent the same building and assign them a consistent ID.
 >Next, we link buildings to community areas using the existing community area field, which connects directly to the city’s boundary data. Once that is done, we can aggregate results at the neighborhood level, such as median EUI by year. Then we bring in the ACS data by using a crosswalk to convert tract level data into community area level estimates.
-Finally, we merge in the weather data by year using a simple join. At the end, we will have one dataset where each row represents a building in a given year, along with its neighborhood characteristics and weather context.
+>Finally, we merge in the weather data by year using a simple join. At the end, we will have one dataset where each row represents a building in a given year, along with its neighborhood characteristics and weather context.
+
 **Timeline (Lilly)**
 >Step 1 Repository setup and data acquisition. Set up the GitHub repo, download all datasets, and make sure everything looks correct.
 >Step 2 Schema audit and normalization. Go through the six CSVs and standardize column names across years.
@@ -31,9 +32,11 @@ Finally, we merge in the weather data by year using a simple join. At the end, w
 >Step 9 Equity and geographic analysis. Map trends and analyze relationships with income, race, and housing.
 >Step 10 Visualization and narrative development. Create final visuals and clearly explain findings.
 >Step 11 Final report, documentation and cleanup. Finalize the report, clean up code, and document everything.
+
 **Constraints (Lilly)**
 >Not every building reports data every year, which creates gaps and makes comparisons harder. The dataset also changes across years, which adds extra work and increases the chance of inconsistencies. Address matching will not be perfect, so some errors are unavoidable.
 >More importantly, we cannot prove causation. Any trends we see could be due to other factors like renovations, rising energy costs, or broader industry changes. Weather also affects energy use, which makes year to year comparisons harder. In addition, ACS data does not perfectly line up with community areas, so some values will be estimates. We also need to be careful when presenting results, since highlighting underperforming areas could have real world implications.
+
 **Gaps and Needed Input (Lilly)**
 >We do not have data on building occupancy, which can significantly affect energy use. We also do not know which buildings made upgrades, so it is hard to tell what actually caused improvements. Lease structures, like who pays utilities, also matter, but we do not have that information.
 >Our pre placard baseline is limited, since we only have one year of data before ratings started. We also cannot confirm whether buildings actually displayed their ratings. From a modeling standpoint, we will likely need more advanced methods since observations are not independent. Finally, spatial patterns may require additional techniques that we have not fully worked out yet. 
