@@ -108,7 +108,7 @@ Finally, we will begin developing visualizations to clearly communicate trends i
 ## Individual Contributions
 
 ### Lillian
-here...
+Lillian contributed to writing the skeleton/base code for steps 1-4 on the timeline. She cleaned the dataset and standardized column names to combine and cluster the six datasets. She also reviewed and edited the status report.
 
 ### Sena
 
