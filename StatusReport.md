@@ -44,6 +44,14 @@ This script reads the raw datasets from the `Data/Raw` directory, performs colum
 
 All dependencies are standard Python libraries (pandas, os, re), and no manual steps are required.
 
+## Data Quality and Cleaning Approach
+
+Our data cleaning strategy focused on ensuring consistency and usability across multiple years of data. We applied a standardized column mapping to align schema differences, converted relevant fields to numeric types, and normalized address fields to improve consistency.
+
+We also created a resolved building identifier to handle missing or inconsistent IDs across datasets. While this approach is not perfect, it provides a reasonable foundation for tracking buildings across years.
+
+In addition, we examined missing value patterns and identified which variables are suitable for analysis versus those that may require filtering or additional processing. These steps ensure that our dataset is both consistent and appropriate for further analysis.
+
 
 ## Changes to the Project Plan
 
@@ -95,14 +103,6 @@ We also plan to refine our building-level tracking across years. While a prelimi
 In addition, we will expand our exploratory analysis into more detailed comparisons, including trends by building type and changes within individual buildings over time. This will help us better understand whether improvements are consistent across categories or concentrated in specific groups.
 
 Finally, we will begin developing visualizations to clearly communicate trends in energy use and emissions. These visualizations will be used to support our final analysis and highlight key insights from the data.
-
-## Data Quality and Cleaning Approach
-
-Our data cleaning strategy focused on ensuring consistency and usability across multiple years of data. We applied a standardized column mapping to align schema differences, converted relevant fields to numeric types, and normalized address fields to improve consistency.
-
-We also created a resolved building identifier to handle missing or inconsistent IDs across datasets. While this approach is not perfect, it provides a reasonable foundation for tracking buildings across years.
-
-In addition, we examined missing value patterns and identified which variables are suitable for analysis versus those that may require filtering or additional processing. These steps ensure that our dataset is both consistent and appropriate for further analysis.
 
 
 ## Individual Contributions
