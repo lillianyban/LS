@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import re
 
-print("Running clean and merge pipeline...")
+print("Starting data pipeline")
 
 files = [
     "Data/Raw/2018-2019.csv",
@@ -70,7 +70,6 @@ numeric_cols = [
     "latitude",
     "longitude"
 ]
-
 
 def snake(s):
     s = s.strip().lower()
@@ -167,15 +166,54 @@ panel.loc[missing_id, "resolved_building_id"] = (
 if not os.path.exists("Content"):
     os.makedirs("Content")
 
+print("Merging complete")
+
 panel.to_csv("Content/energy_benchmarking_panel.csv", index=False)
 
-print("Done.")
-print("Panel shape:", panel.shape)
+print(f"Dataset ready with {panel.shape[0]} rows and {panel.shape[1]} columns")
 
-print("\nSample rows:")
-print(panel[["data_year", "reporting_year", "resolved_building_id"]].head())
+df = panel.dropna(subset=["community_area", "reporting_year"])
 
-print("\nTop missing values:")
-print(panel.isna().sum().sort_values(ascending=False).head(15))
+community_year = df.groupby(["community_area", "reporting_year"]).agg({
+    "site_eui_kbtu_per_sq_ft": "median",
+    "total_ghg_emissions_metric_tons_co2e": "median",
+    "energy_star_score": "mean",
+    "water_use_kgal": "median",
+    "resolved_building_id": "nunique"
+}).reset_index()
 
-print("\nSaved to Content/energy_benchmarking_panel.csv")
+community_year = community_year.rename(columns={
+    "resolved_building_id": "num_buildings"
+})
+
+community_year.to_csv("Content/community_area_year.csv", index=False)
+
+panel = panel.sort_values(["resolved_building_id", "reporting_year"])
+
+panel["eui_change"] = panel.groupby("resolved_building_id")[
+    "site_eui_kbtu_per_sq_ft"
+].diff()
+
+panel["ghg_change"] = panel.groupby("resolved_building_id")[
+    "total_ghg_emissions_metric_tons_co2e"
+].diff()
+
+panel["eui_pct_change"] = panel.groupby("resolved_building_id")[
+    "site_eui_kbtu_per_sq_ft"
+].pct_change()
+
+panel["ghg_pct_change"] = panel.groupby("resolved_building_id")[
+    "total_ghg_emissions_metric_tons_co2e"
+].pct_change()
+
+panel["rating_group"] = pd.cut(
+    panel["energy_star_score"],
+    bins=[0, 50, 75, 100],
+    labels=["Low", "Medium", "High"]
+)
+
+panel.to_csv("Content/building_longitudinal_changes.csv", index=False)
+
+print("Community summaries and longitudinal analysis saved")
+
+print("Pipeline finished successfully")
