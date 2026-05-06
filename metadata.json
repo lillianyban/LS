@@ -1,0 +1,54 @@
+{
+  "@context": {
+    "dcat": "http://www.w3.org/ns/dcat#"
+  },
+  "@type": "dcat:Dataset",
+
+  "title": "Chicago Energy Benchmarking Panel Dataset",
+
+  "description": "A cleaned and integrated multi-year panel dataset of Chicago building energy benchmarking data from 2018 to 2024. The dataset includes energy usage intensity (EUI), greenhouse gas emissions, ENERGY STAR scores, and building characteristics, enabling longitudinal and comparative analysis across time, property types, and community areas.",
+
+  "accessLevel": "public",
+
+  "contactPoint": {
+    "name": "Sena Tiryaki",
+    "email": "stiry2@illinois.edu"
+  },
+
+  "keyword": [
+    "energy benchmarking",
+    "Chicago",
+    "buildings",
+    "EUI",
+    "GHG emissions",
+    "data integration",
+    "longitudinal analysis"
+  ],
+
+  "modified": "2026-05-05",
+
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+
+  "distribution": [
+    {
+      "@type": "dcat:Distribution",
+      "accessURL": "Data/Processed/energy_benchmarking_panel.csv",
+      "mediaType": "text/csv"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "accessURL": "Data/Processed/building_longitudinal_changes.csv",
+      "mediaType": "text/csv"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "accessURL": "Data/Processed/community_area_year.csv",
+      "mediaType": "text/csv"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "accessURL": "Results/Tables/yearly_summary.csv",
+      "mediaType": "text/csv"
+    }
+  ]
+}
